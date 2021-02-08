@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  using-volumes:
+    image: using-volumes
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:80
+    volumes: 
+      - ./CustomerSettings/appsettings.customer1.json:/app/appsettings.json
+      
+  using-env-variables:
+    image: using-env-variables
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5001:80
+    environment: 
+      - MyFirstValueCustomConfig=via environment variable!
+      - ComplexConfig__0__Parent__Child=Hi environment multilevel
